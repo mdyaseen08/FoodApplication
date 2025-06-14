@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}" />
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'images/logo.jpeg'%}" alt="">
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/menu">Menu</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/cart">Cart</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="icons">
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.first_name }}</span>
+                <!-- <span>DEBUG: {{ user.first_name }}</span> -->
+                <a href="/logout">Sign Out</a>
+            {% else %}
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+</body>
+</html>
+
